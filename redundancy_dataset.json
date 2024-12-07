@@ -1,0 +1,1226 @@
+[
+    {
+        "original_code": "def process_data(data_list):\n    result = []\n    for item in data_list:\n        if isinstance(item, (int, float)):\n            result.append(item * 2)\n        elif isinstance(item, str):\n            result.append(item.upper())\n        else:\n            result.append(str(item))\n    return result",
+        "comparison_code": "def transform_list(input_list):\n    output = []\n    for element in input_list:\n        if type(element) in [int, float]:\n            output.append(element * 2)\n        elif type(element) == str:\n            output.append(element.upper())\n        else:\n            output.append(str(element))\n    return output",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 9,
+            "comparison_loc": 9,
+            "differences": [
+                "function_name",
+                "variable_names",
+                "type_checking_method"
+            ]
+        },
+        "id": "1"
+    },
+    {
+        "original_code": "def find_maximum(numbers):\n    max_value = numbers[0]\n    for num in numbers:\n        if num > max_value:\n            max_value = num\n    return max_value",
+        "comparison_code": "def get_largest_value(values):\n    largest = values[0]\n    for val in values:\n        if val > largest:\n            largest = val\n    return largest",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 6,
+            "comparison_loc": 6,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "2"
+    },
+    {
+        "original_code": "def calculate_sum(numbers):\n    total = 0\n    for num in numbers:\n        total += num\n    return total",
+        "comparison_code": "def get_total(values):\n    return sum(values)",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 5,
+            "comparison_loc": 2
+        },
+        "id": "3"
+    },
+    {
+        "original_code": "def calculate_fibonacci(n):\n    fib = [0, 1]\n    for i in range(2, n+1):\n        fib.append(fib[i-1] + fib[i-2])\n    return fib[-1]",
+        "comparison_code": "def fibonacci_number(index):\n    sequence = [0, 1]\n    for i in range(2, index + 1):\n        sequence.append(sequence[i - 1] + sequence[i - 2])\n    return sequence[-1]",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 5,
+            "comparison_loc": 5,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "4"
+    },
+    {
+        "original_code": "\n    #include <iostream>\n    #include <vector>\n    using namespace std;\n\n    vector<int> merge_sort(vector<int> &arr) {\n        if (arr.size() <= 1) return arr;\n        int mid = arr.size() / 2;\n        vector<int> left(arr.begin(), arr.begin() + mid);\n        vector<int> right(arr.begin() + mid, arr.end());\n        return merge(merge_sort(left), merge_sort(right));\n    }\n\n    vector<int> merge(vector<int> &left, vector<int> &right) {\n        vector<int> sorted;\n        auto it_left = left.begin();\n        auto it_right = right.begin();\n        while (it_left != left.end() && it_right != right.end()) {\n            if (*it_left < *it_right) {\n                sorted.push_back(*it_left++);\n            } else {\n                sorted.push_back(*it_right++);\n            }\n        }\n        sorted.insert(sorted.end(), it_left, left.end());\n        sorted.insert(sorted.end(), it_right, right.end());\n        return sorted;\n    }",
+        "comparison_code": "\n    #include <iostream>\n    #include <vector>\n    using namespace std;\n\n    vector<int> divide_and_merge(vector<int> &array) {\n        if (array.size() <= 1) return array;\n        int middle = array.size() / 2;\n        vector<int> left(array.begin(), array.begin() + middle);\n        vector<int> right(array.begin() + middle, array.end());\n        return combine(divide_and_merge(left), divide_and_merge(right));\n    }\n\n    vector<int> combine(vector<int> &left, vector<int> &right) {\n        vector<int> result;\n        auto l = left.begin();\n        auto r = right.begin();\n        while (l != left.end() && r != right.end()) {\n            if (*l < *r) {\n                result.push_back(*l++);\n            } else {\n                result.push_back(*r++);\n            }\n        }\n        result.insert(result.end(), l, left.end());\n        result.insert(result.end(), r, right.end());\n        return result;\n    }",
+        "is_redundant": true,
+        "language": "cpp",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 26,
+            "comparison_loc": 26,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "5"
+    },
+    {
+        "original_code": "\n    #include <stdio.h>\n\n    int binary_search(int arr[], int size, int target) {\n        int low = 0, high = size - 1, mid;\n        while (low <= high) {\n            mid = low + (high - low) / 2;\n            if (arr[mid] == target)\n                return mid;\n            if (arr[mid] < target)\n                low = mid + 1;\n            else\n                high = mid - 1;\n        }\n        return -1;\n    }",
+        "comparison_code": "\n    #include <stdio.h>\n\n    int search_in_sorted_array(int array[], int length, int value) {\n        int start = 0, end = length - 1, middle;\n        while (start <= end) {\n            middle = start + (end - start) / 2;\n            if (array[middle] == value)\n                return middle;\n            if (array[middle] < value)\n                start = middle + 1;\n            else\n                end = middle - 1;\n        }\n        return -1;\n    }",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 13,
+            "comparison_loc": 13,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "6"
+    },
+    {
+        "original_code": "\n    public class Factorial {\n        public static int factorial(int n) {\n            if (n == 0 || n == 1) return 1;\n            return n * factorial(n - 1);\n        }\n    }",
+        "comparison_code": "\n    public class ComputeFactorial {\n        public static int findFactorial(int number) {\n            if (number <= 1) return 1;\n            return number * findFactorial(number - 1);\n        }\n    }",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 5,
+            "comparison_loc": 5,
+            "differences": [
+                "class_name",
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "7"
+    },
+    {
+        "original_code": "def merge_sort(arr):\n            if len(arr) <= 1:\n                return arr\n            mid = len(arr) // 2\n            left_half = arr[:mid]\n            right_half = arr[mid:]\n            left_half = merge_sort(left_half)\n            right_half = merge_sort(right_half)\n            return merge(left_half, right_half)\n\n        def merge(left, right):\n            merged = []\n            i = j = 0\n            while i < len(left) and j < len(right):\n                if left[i] <= right[j]:\n                    merged.append(left[i])\n                    i += 1\n                else:\n                    merged.append(right[j])\n                    j += 1\n            merged.extend(left[i:])\n            merged.extend(right[j:])\n            return merged",
+        "comparison_code": "def sort_array(array):\n            if len(array) <= 1:\n                return array\n            mid = len(array) // 2\n            left_part = array[:mid]\n            right_part = array[mid:]\n            left_part = sort_array(left_part)\n            right_part = sort_array(right_part)\n            return merge_arrays(left_part, right_part)\n\n        def merge_arrays(left, right):\n            merged = []\n            i = j = 0\n            while i < len(left) and j < len(right):\n                if left[i] <= right[j]:\n                    merged.append(left[i])\n                    i += 1\n                else:\n                    merged.append(right[j])\n                    j += 1\n            merged.extend(left[i:])\n            merged.extend(right[j:])\n            return merged",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "8"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> filter_even(const vector<int>& nums) {\n    vector<int> result;\n    for (int num : nums) {\n        if (num % 2 == 0) {\n            result.push_back(num);\n        }\n    }\n    return result;\n}",
+        "comparison_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvector<int> get_even_numbers(const vector<int>& numbers) {\n    vector<int> evens;\n    for (int number : numbers) {\n        if (number % 2 == 0) {\n            evens.push_back(number);\n        }\n    }\n    return evens;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 11,
+            "comparison_loc": 11,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "9"
+    },
+    {
+        "original_code": "#include <stdio.h>\nvoid reverse_array(int arr[], int size) {\n    for (int i = 0; i < size / 2; i++) {\n        int temp = arr[i];\n        arr[i] = arr[size - i - 1];\n        arr[size - i - 1] = temp;\n    }\n}",
+        "comparison_code": "#include <stdio.h>\nvoid reverse_elements(int array[], int length) {\n    int temp;\n    for (int i = 0; i < length / 2; i++) {\n        temp = array[i];\n        array[i] = array[length - i - 1];\n        array[length - i - 1] = temp;\n    }\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 7,
+            "comparison_loc": 8,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "10"
+    },
+    {
+        "original_code": "import java.util.*;\npublic class ListSorter {\n    public static List<Integer> sortListAscending(List<Integer> list) {\n        Collections.sort(list);\n        return list;\n    }\n}",
+        "comparison_code": "import java.util.*;\npublic class SortUtils {\n    public static List<Integer> sortAscending(List<Integer> numbers) {\n        Collections.sort(numbers);\n        return numbers;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 6,
+            "comparison_loc": 6,
+            "differences": [
+                "class_name",
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "11"
+    },
+    {
+        "original_code": "function flattenArray(arr) {\n    return arr.reduce((flat, current) => flat.concat(Array.isArray(current) ? flattenArray(current) : current), []);\n}",
+        "comparison_code": "function collapseArray(array) {\n    return array.reduce((result, item) => result.concat(Array.isArray(item) ? collapseArray(item) : item), []);\n}",
+        "is_redundant": true,
+        "language": "javascript",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 2,
+            "comparison_loc": 2,
+            "differences": [
+                "function_name",
+                "variable_names"
+            ]
+        },
+        "id": "12"
+    },
+    {
+        "original_code": "def dijkstra(graph, start):\n    import heapq\n    distances = {vertex: float('infinity') for vertex in graph}\n    distances[start] = 0\n    priority_queue = [(0, start)]\n\n    while priority_queue:\n        current_distance, current_vertex = heapq.heappop(priority_queue)\n\n        if current_distance > distances[current_vertex]:\n            continue\n\n        for neighbor, weight in graph[current_vertex].items():\n            distance = current_distance + weight\n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(priority_queue, (distance, neighbor))\n\n    return distances",
+        "comparison_code": "def shortest_path(graph, source):\n    import heapq\n    min_distances = {node: float('inf') for node in graph}\n    min_distances[source] = 0\n    pq = [(0, source)]\n\n    while pq:\n        dist, current_node = heapq.heappop(pq)\n\n        if dist > min_distances[current_node]:\n            continue\n\n        for adj_node, edge_weight in graph[current_node].items():\n            new_dist = dist + edge_weight\n            if new_dist < min_distances[adj_node]:\n                min_distances[adj_node] = new_dist\n                heapq.heappush(pq, (new_dist, adj_node))\n\n    return min_distances",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 16,
+            "comparison_loc": 16,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "13"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <vector>\n#include <climits>\nusing namespace std;\n\nvoid floydWarshall(vector<vector<int>>& graph, int V) {\n    vector<vector<int>> dist = graph;\n\n    for (int k = 0; k < V; ++k) {\n        for (int i = 0; i < V; ++i) {\n            for (int j = 0; j < V; ++j) {\n                if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX && dist[i][k] + dist[k][j] < dist[i][j]) {\n                    dist[i][j] = dist[i][k] + dist[k][j];\n                }\n            }\n        }\n    }\n\n    for (int i = 0; i < V; ++i) {\n        for (int j = 0; j < V; ++j) {\n            if (dist[i][j] == INT_MAX)\n                cout << \"INF \";\n            else\n                cout << dist[i][j] << \" \";\n        }\n        cout << endl;\n    }\n}",
+        "comparison_code": "#include <iostream>\n#include <vector>\n#include <climits>\nusing namespace std;\n\nvoid findShortestPaths(vector<vector<int>>& adjMatrix, int n) {\n    vector<vector<int>> distance = adjMatrix;\n\n    for (int mid = 0; mid < n; ++mid) {\n        for (int start = 0; start < n; ++start) {\n            for (int end = 0; end < n; ++end) {\n                if (distance[start][mid] != INT_MAX && distance[mid][end] != INT_MAX &&\n                    distance[start][mid] + distance[mid][end] < distance[start][end]) {\n                    distance[start][end] = distance[start][mid] + distance[mid][end];\n                }\n            }\n        }\n    }\n\n    for (int a = 0; a < n; ++a) {\n        for (int b = 0; b < n; ++b) {\n            if (distance[a][b] == INT_MAX)\n                cout << \"INF \";\n            else\n                cout << distance[a][b] << \" \";\n        }\n        cout << endl;\n    }\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "variable names",
+                "loop variable naming"
+            ]
+        },
+        "id": "14"
+    },
+    {
+        "original_code": "#include <stdio.h>\n#define MAX 100\n\nvoid knapsack(int n, int w[], int v[], int W) {\n    int dp[MAX][MAX] = {0};\n    for (int i = 1; i <= n; i++) {\n        for (int j = 0; j <= W; j++) {\n            if (w[i - 1] <= j) {\n                dp[i][j] = (v[i - 1] + dp[i - 1][j - w[i - 1]] > dp[i - 1][j]) ? v[i - 1] + dp[i - 1][j - w[i - 1]] : dp[i - 1][j];\n            } else {\n                dp[i][j] = dp[i - 1][j];\n            }\n        }\n    }\n    printf(\"Max Value: %d\\n\", dp[n][W]);\n}",
+        "comparison_code": "#include <stdio.h>\n#define MAX 100\n\nvoid solveKnapsack(int items, int weights[], int values[], int capacity) {\n    int table[MAX][MAX] = {0};\n    for (int item = 1; item <= items; item++) {\n        for (int cap = 0; cap <= capacity; cap++) {\n            if (weights[item - 1] <= cap) {\n                table[item][cap] = (values[item - 1] + table[item - 1][cap - weights[item - 1]] > table[item - 1][cap]) ? values[item - 1] + table[item - 1][cap - weights[item - 1]] : table[item - 1][cap];\n            } else {\n                table[item][cap] = table[item - 1][cap];\n            }\n        }\n    }\n    printf(\"Optimal Value: %d\\n\", table[items][capacity]);\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "function name",
+                "variable names"
+            ]
+        },
+        "id": "15"
+    },
+    {
+        "original_code": "def find_subsets(nums):\n    result = [[]]\n    for num in nums:\n        result += [current + [num] for current in result]\n    return result",
+        "comparison_code": "def generate_combinations(elements):\n    subsets = [[]]\n    for element in elements:\n        subsets.extend([subset + [element] for subset in subsets])\n    return subsets",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 5,
+            "comparison_loc": 5,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "16"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nvoid reverseString(string &str) {\n    int n = str.length();\n    for (int i = 0; i < n / 2; i++) {\n        swap(str[i], str[n - i - 1]);\n    }\n}\n\nint main() {\n    string input;\n    cout << \"Enter a string: \";\n    cin >> input;\n    reverseString(input);\n    cout << \"Reversed string: \" << input << endl;\n    return 0;\n}",
+        "comparison_code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nvoid reverseWord(string &word) {\n    int len = word.size();\n    for (int i = 0; i < len / 2; i++) {\n        swap(word[i], word[len - i - 1]);\n    }\n}\n\nint main() {\n    string text;\n    cout << \"Input text: \";\n    cin >> text;\n    reverseWord(text);\n    cout << \"Flipped text: \" << text << endl;\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 14,
+            "comparison_loc": 14,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "17"
+    },
+    {
+        "original_code": "#include <stdio.h>\n\nvoid factorial(int n) {\n    int result = 1;\n    for (int i = 1; i <= n; i++) {\n        result *= i;\n    }\n    printf(\"Factorial: %d\\n\", result);\n}\n\nint main() {\n    int num;\n    printf(\"Enter a number: \");\n    scanf(\"%d\", &num);\n    factorial(num);\n    return 0;\n}",
+        "comparison_code": "#include <stdio.h>\n\nvoid computeFactorial(int x) {\n    int fact = 1;\n    for (int i = 1; i <= x; i++) {\n        fact *= i;\n    }\n    printf(\"Result: %d\\n\", fact);\n}\n\nint main() {\n    int value;\n    printf(\"Input value: \");\n    scanf(\"%d\", &value);\n    computeFactorial(value);\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 13,
+            "comparison_loc": 13,
+            "differences": [
+                "function_names",
+                "variable names"
+            ]
+        },
+        "id": "18"
+    },
+    {
+        "original_code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+        "comparison_code": "def search_element(data, key):\n    start, end = 0, len(data) - 1\n    while start <= end:\n        middle = (start + end) // 2\n        if data[middle] == key:\n            return middle\n        elif data[middle] < key:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 10,
+            "comparison_loc": 10,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "19"
+    },
+    {
+        "original_code": "#include <iostream>\nusing namespace std;\n\nbool isPrime(int n) {\n    if (n <= 1) return false;\n    for (int i = 2; i * i <= n; i++) {\n        if (n % i == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    int num;\n    cout << \"Enter a number: \";\n    cin >> num;\n    if (isPrime(num)) {\n        cout << \"Prime\" << endl;\n    } else {\n        cout << \"Not Prime\" << endl;\n    }\n    return 0;\n}",
+        "comparison_code": "#include <iostream>\nusing namespace std;\n\nbool checkPrime(int number) {\n    if (number <= 1) return false;\n    for (int div = 2; div * div <= number; div++) {\n        if (number % div == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    int value;\n    cout << \"Input a value: \";\n    cin >> value;\n    if (checkPrime(value)) {\n        cout << \"It's a prime number!\" << endl;\n    } else {\n        cout << \"Not a prime number.\" << endl;\n    }\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 15,
+            "comparison_loc": 15,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "20"
+    },
+    {
+        "original_code": "#include <iostream>\nusing namespace std;\n\nvoid swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    swap(x, y);\n    cout << x << \" \" << y;\n    return 0;\n}",
+        "comparison_code": "#include <iostream>\nusing namespace std;\n\nvoid exchange(int &p, int &q) {\n    int temp = p;\n    p = q;\n    q = temp;\n}\n\nint main() {\n    int num1 = 20, num2 = 40;\n    exchange(num1, num2);\n    cout << num1 << \" \" << num2;\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 12,
+            "comparison_loc": 12,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "input values"
+            ]
+        },
+        "id": "21"
+    },
+    {
+        "original_code": "public class Factorial {\n    public static int factorial(int n) {\n        if (n == 0) return 1;\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        int num = 5;\n        System.out.println(factorial(num));\n    }\n}",
+        "comparison_code": "public class RecursiveFactorial {\n    public static int computeFactorial(int num) {\n        if (num == 0) return 1;\n        return num * computeFactorial(num - 1);\n    }\n\n    public static void main(String[] args) {\n        int value = 6;\n        System.out.println(computeFactorial(value));\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 9,
+            "comparison_loc": 9,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "parameter values"
+            ]
+        },
+        "id": "22"
+    },
+    {
+        "original_code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]",
+        "comparison_code": "def sort_bubble(nums):\n    size = len(nums)\n    for idx in range(size):\n        for pos in range(0, size - idx - 1):\n            if nums[pos] > nums[pos + 1]:\n                nums[pos], nums[pos + 1] = nums[pos + 1], nums[pos]",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 7,
+            "comparison_loc": 7,
+            "differences": [
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "23"
+    },
+    {
+        "original_code": "#include <stdio.h>\n\nvoid printArray(int arr[], int n) {\n    for (int i = 0; i < n; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    printArray(arr, 5);\n    return 0;\n}",
+        "comparison_code": "#include <stdio.h>\n\nvoid displayArray(int data[], int size) {\n    for (int i = 0; i < size; i++) {\n        printf(\"%d \", data[i]);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int numbers[] = {10, 20, 30, 40};\n    displayArray(numbers, 4);\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 11,
+            "comparison_loc": 11,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "array elements"
+            ]
+        },
+        "id": "24"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    double a = 3.0, b = 4.0;\n    cout << sqrt(a * a + b * b);\n    return 0;\n}",
+        "comparison_code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    double x = 6.0, y = 8.0;\n    cout << hypot(x, y);\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 7,
+            "comparison_loc": 7,
+            "differences": [
+                "variable names",
+                "mathematical function"
+            ]
+        },
+        "id": "25"
+    },
+    {
+        "original_code": "#include <stdio.h>\n\nint sum(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int x = 5, y = 10;\n    printf(\"%d\", sum(x, y));\n    return 0;\n}",
+        "comparison_code": "#include <stdio.h>\n\nint add(int num1, int num2) {\n    return num1 + num2;\n}\n\nint main() {\n    int a = 3, b = 7;\n    printf(\"%d\", add(a, b));\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 8,
+            "comparison_loc": 8,
+            "differences": [
+                "function_names",
+                "variable names",
+                "input values"
+            ]
+        },
+        "id": "26"
+    },
+    {
+        "original_code": "public class SumArray {\n    public static int sum(int[] arr) {\n        int total = 0;\n        for (int val : arr) {\n            total += val;\n        }\n        return total;\n    }\n}",
+        "comparison_code": "public class ArraySum {\n    public static int calculateSum(int[] numbers) {\n        int sum = 0;\n        for (int num : numbers) {\n            sum += num;\n        }\n        return sum;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 7,
+            "comparison_loc": 7,
+            "differences": [
+                "class names",
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "27"
+    },
+    {
+        "original_code": "public class Palindrome {\n    public static boolean isPalindrome(String str) {\n        int n = str.length();\n        for (int i = 0; i < n / 2; i++) {\n            if (str.charAt(i) != str.charAt(n - i - 1)) {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+        "comparison_code": "public class CheckPalindrome {\n    public static boolean checkIfPalindrome(String s) {\n        int len = s.length();\n        for (int index = 0; index < len / 2; index++) {\n            if (s.charAt(index) != s.charAt(len - index - 1)) {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 9,
+            "comparison_loc": 9,
+            "differences": [
+                "class names",
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "28"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint sumArray(vector<int> nums) {\n    int sum = 0;\n    for (int num : nums) {\n        sum += num;\n    }\n    return sum;\n}\n\nint main() {\n    vector<int> numbers = {1, 2, 3, 4};\n    cout << sumArray(numbers) << endl;\n    return 0;\n}",
+        "comparison_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint calculateSum(vector<int> values) {\n    int total = 0;\n    for (int val : values) {\n        total += val;\n    }\n    return total;\n}\n\nint main() {\n    vector<int> nums = {5, 6, 7, 8};\n    cout << calculateSum(nums) << endl;\n    return 0;\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 11,
+            "comparison_loc": 11,
+            "differences": [
+                "function_names",
+                "variable names",
+                "input values"
+            ]
+        },
+        "id": "29"
+    },
+    {
+        "original_code": "class Solution {\npublic:\n\n    string convert(string s, int numRows) {\n    \n    if(numRows <= 1) return s;\n\n    vector<string>v(numRows, \"\"); \n\n    int j = 0, dir = -1;\n\n    for(int i = 0; i < s.length(); i++)\n    {\n\n        if(j == numRows - 1 || j == 0) dir *= (-1); \n\n        v[j] += s[i];\n\n        if(dir == 1) j++;\n\n        else j--;\n    }\n\n    string res;\n\n    for(auto &it : v) res += it; \n\n    return res;\n\n    }\n};",
+        "comparison_code": "class Solution {\npublic:\n\n    string zigzagConvert(string s, int rows) {\n    \n    if(rows <= 1) return s;\n\n    vector<string> lines(rows, \"\"); \n\n    int index = 0, direction = -1;\n\n    for(int i = 0; i < s.length(); i++)\n    {\n\n        if(index == rows - 1 || index == 0) direction *= (-1); \n\n        lines[index] += s[i];\n\n        if(direction == 1) index++;\n\n        else index--;\n    }\n\n    string result;\n\n    for(auto &line : lines) result += line; \n\n    return result;\n\n    }\n};",
+        "is_redundant": true,
+        "language": "cpp",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 16,
+            "comparison_loc": 16,
+            "differences": [
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "30"
+    },
+    {
+        "original_code": "class Solution {\n    private static final String[] PHONE_MAP = {\n            \"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"\n    };\n\n    public List<String> letterCombinations(String digits) {\n        List<String> combinations = new ArrayList<>();\n\n        if (digits.isEmpty())\n            return combinations;\n\n        backtrack(0, digits, new StringBuilder(), combinations);\n\n        return combinations;\n    }\n\n    private void backtrack(int index, String digits, StringBuilder path, List<String> combinations) {\n        if (index == digits.length()) {\n            combinations.add(path.toString());\n\n            return;\n        }\n\n        String possibleLetters = PHONE_MAP[digits.charAt(index) - '0'];\n\n        for (char letter : possibleLetters.toCharArray()) {\n            path.append(letter);\n\n            backtrack(index + 1, digits, path, combinations);\n\n            path.deleteCharAt(path.length() - 1); // Backtrack\n        }\n    }\n}",
+        "comparison_code": "class Solution {\n    private static final String[] NUMERIC_MAP = {\n            \"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"\n    };\n\n    public List<String> generateCombinations(String input) {\n        List<String> result = new ArrayList<>();\n\n        if (input.isEmpty())\n            return result;\n\n        generate(0, input, new StringBuilder(), result);\n\n        return result;\n    }\n\n    private void generate(int pos, String input, StringBuilder currentCombination, List<String> result) {\n        if (pos == input.length()) {\n            result.add(currentCombination.toString());\n\n            return;\n        }\n\n        String letters = NUMERIC_MAP[input.charAt(pos) - '0'];\n\n        for (char ch : letters.toCharArray()) {\n            currentCombination.append(ch);\n\n            generate(pos + 1, input, currentCombination, result);\n\n            currentCombination.deleteCharAt(currentCombination.length() - 1); // Undo step\n        }\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 23,
+            "comparison_loc": 23,
+            "differences": [
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "31"
+    },
+    {
+        "original_code": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function (head, k) {\n    const dummy = new LinkedListNode(0);\n    dummy.next = head;\n    let ptr = dummy;\n\n    while (ptr !== null) {\n\n        let tracker = ptr;\n\n        for (let i = 0; i < k; i++) {\n            if (tracker === null) {\n                break;\n            }\n            tracker = tracker.next;\n        }\n\n        if (tracker === null) {\n            break;\n        }\n\n        const updatedNodes = reverseLinkedList(ptr.next, k);\n        const previous = updatedNodes[0];\n        const current = updatedNodes[1];\n\n        const lastNodeOfReversedGroup = ptr.next;\n        lastNodeOfReversedGroup.next = current;\n        ptr.next = previous;\n        ptr = lastNodeOfReversedGroup;\n    }\n\n    return dummy.next;\n};\n\nclass LinkedListNode {\n    constructor(data, next = null) {\n        this.data = data;\n        this.next = next;\n    }\n}\n\nfunction reverseLinkedList(head, k) {\n\n    let previous = null;\n    let current = head;\n    let next = null;\n\n    for (let i = 0; i < k; i++) {\n        // temporarily store the next node\n        next = current.next;\n        // reverse the current node\n        current.next = previous;\n        // before we move to the next node, point previous to the current node\n        previous = current;\n        // move to the next node\n        current = next;\n    }\n\n    return [previous, current];\n}",
+        "comparison_code": "/**\n * Definition for singly-linked list.\n * function ListNode(value, next) {\n *     this.value = (value === undefined ? 0 : value)\n *     this.next = (next === undefined ? null : next)\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function (head, k) {\n    const startNode = new LinkedListNode(0);\n    startNode.next = head;\n    let currentNode = startNode;\n\n    while (currentNode !== null) {\n\n        let tempNode = currentNode;\n\n        for (let i = 0; i < k; i++) {\n            if (tempNode === null) {\n                break;\n            }\n            tempNode = tempNode.next;\n        }\n\n        if (tempNode === null) {\n            break;\n        }\n\n        const reversedNodes = reverseList(tempNode.next, k);\n        const previousNode = reversedNodes[0];\n        const nextNode = reversedNodes[1];\n\n        const lastReversedNode = currentNode.next;\n        lastReversedNode.next = nextNode;\n        currentNode.next = previousNode;\n        currentNode = lastReversedNode;\n    }\n\n    return startNode.next;\n};\n\nclass LinkedListNode {\n    constructor(value, next = null) {\n        this.value = value;\n        this.next = next;\n    }\n}\n\nfunction reverseList(head, k) {\n\n    let prev = null;\n    let curr = head;\n    let nxt = null;\n\n    for (let i = 0; i < k; i++) {\n        nxt = curr.next;\n        curr.next = prev;\n        prev = curr;\n        curr = nxt;\n    }\n\n    return [prev, curr];\n}",
+        "is_redundant": true,
+        "language": "javascript",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 28,
+            "comparison_loc": 28,
+            "differences": [
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "32"
+    },
+    {
+        "original_code": "public class Solution {\n    public int Trap(int[] height) {\n        int maxPeak = 0;\n        int maxPeakIndex = 0;\n        for (int i = 0; i < height.Length; i ++)\n            if (height[i] > maxPeak)\n            {\n                maxPeak = height[i];\n                maxPeakIndex = i;\n            }\n\n        int totalWater = 0;\n        int currentElevation = 0;\n        for (int i = 0; i < maxPeakIndex; i ++)\n        {\n            currentElevation = height[i];\n            for (int j = i+1; j < height.Length && height[j] < currentElevation; j++)\n            {\n                totalWater += currentElevation - height[j];\n                i ++;\n            }\n        }\n        for (int i = height.Length-1; i > maxPeakIndex; i --)\n        {\n            currentElevation = height[i];\n            for (int j = i-1; j > maxPeakIndex && height[j] < currentElevation; j--)\n            {\n                totalWater += currentElevation - height[j];\n                i --;\n            }\n        }\n        return totalWater;\n    }\n}",
+        "comparison_code": "public class Solution {\n    public int CalculateWater(int[] heights) {\n        int highestPeak = 0;\n        int peakIndex = 0;\n        for (int i = 0; i < heights.Length; i++)\n            if (heights[i] > highestPeak)\n            {\n                highestPeak = heights[i];\n                peakIndex = i;\n            }\n\n        int totalWater = 0;\n        int currentHeight = 0;\n        for (int i = 0; i < peakIndex; i++)\n        {\n            currentHeight = heights[i];\n            for (int j = i + 1; j < heights.Length && heights[j] < currentHeight; j++)\n            {\n                totalWater += currentHeight - heights[j];\n                i++;\n            }\n        }\n        for (int i = heights.Length - 1; i > peakIndex; i--)\n        {\n            currentHeight = heights[i];\n            for (int j = i - 1; j > peakIndex && heights[j] < currentHeight; j--)\n            {\n                totalWater += currentHeight - heights[j];\n                i--;\n            }\n        }\n        return totalWater;\n    }\n}",
+        "is_redundant": true,
+        "language": "c#",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 26,
+            "comparison_loc": 26,
+            "differences": [
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "33"
+    },
+    {
+        "original_code": "class Solution {\npublic:\n\n    bool isMatch(string s, string p) {\n        int n=s.length(),m=p.length();\n       \n       vector<bool>prev(m+1,false),cur(m+1,false);\n\n        prev[0]=true;\n        \n        for(int i=1;i<=m;i++)\n        {\n            if(p[i-1]=='*')\n                prev[i]=true;\n            else \n                break;\n        }\n        for(int i=1;i<=n;i++)\n        {\n            for(int j=1;j<=m;j++)\n            {\n                if(s[i-1]==p[j-1] || p[j-1]=='?')\n                    cur[j]=prev[j-1];\n                else if(p[j-1]=='*')\n                    cur[j]=cur[j-1] || prev[j];\n                else\n                    cur[j]=false;\n            }\n            prev=cur;\n        }\n        return prev[m];\n    }\n};",
+        "comparison_code": "class Solution {\npublic:\n\n    bool matchPattern(string s, string p) {\n        int lenS = s.length(), lenP = p.length();\n       \n       vector<bool> prevRow(lenP + 1, false), currRow(lenP + 1, false);\n\n        prevRow[0] = true;\n        \n        for (int i = 1; i <= lenP; i++)\n        {\n            if (p[i - 1] == '*')\n                prevRow[i] = true;\n            else\n                break;\n        }\n        for (int i = 1; i <= lenS; i++)\n        {\n            for (int j = 1; j <= lenP; j++)\n            {\n                if (s[i - 1] == p[j - 1] || p[j - 1] == '?')\n                    currRow[j] = prevRow[j - 1];\n                else if (p[j - 1] == '*')\n                    currRow[j] = currRow[j - 1] || prevRow[j];\n                else\n                    currRow[j] = false;\n            }\n            prevRow = currRow;\n        }\n        return prevRow[lenP];\n    }\n};",
+        "is_redundant": true,
+        "language": "cpp",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 22,
+            "comparison_loc": 22,
+            "differences": [
+                "function names",
+                "variable names"
+            ]
+        },
+        "id": "34"
+    },
+    {
+        "original_code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    return merge(left, right)\n\ndef merge(left, right):\n    result = []\n    i, j = 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result",
+        "comparison_code": "def sorted_merge(arr):\n    if len(arr) <= 1:\n        return arr\n    middle = len(arr) // 2\n    left_half = sorted_merge(arr[:middle])\n    right_half = sorted_merge(arr[middle:])\n    return combine(left_half, right_half)\n\ndef combine(left, right):\n    merged = []\n    l_index, r_index = 0, 0\n    while l_index < len(left) and r_index < len(right):\n        if left[l_index] <= right[r_index]:\n            merged.append(left[l_index])\n            l_index += 1\n        else:\n            merged.append(right[r_index])\n            r_index += 1\n    merged.extend(left[l_index:])\n    merged.extend(right[r_index:])\n    return merged",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 18,
+            "comparison_loc": 18,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "minor_logic_modifications"
+            ]
+        },
+        "id": "35"
+    },
+    {
+        "original_code": "class QuickSort {\n    public void quickSort(int[] arr, int low, int high) {\n        if (low < high) {\n            int partitionIndex = partition(arr, low, high);\n            quickSort(arr, low, partitionIndex - 1);\n            quickSort(arr, partitionIndex + 1, high);\n        }\n    }\n\n    private int partition(int[] arr, int low, int high) {\n        int pivot = arr[high];\n        int i = low - 1;\n        for (int j = low; j < high; j++) {\n            if (arr[j] <= pivot) {\n                i++;\n                int temp = arr[i];\n                arr[i] = arr[j];\n                arr[j] = temp;\n            }\n        }\n        int temp = arr[i + 1];\n        arr[i + 1] = arr[high];\n        arr[high] = temp;\n        return i + 1;\n    }\n}",
+        "comparison_code": "class ArraySorter {\n    public void performQuickSort(int[] arr, int start, int end) {\n        if (start < end) {\n            int pivotPosition = divideArray(arr, start, end);\n            performQuickSort(arr, start, pivotPosition - 1);\n            performQuickSort(arr, pivotPosition + 1, end);\n        }\n    }\n\n    private int divideArray(int[] arr, int start, int end) {\n        int pivotElement = arr[end];\n        int index = start - 1;\n        for (int j = start; j < end; j++) {\n            if (arr[j] <= pivotElement) {\n                index++;\n                int swap = arr[index];\n                arr[index] = arr[j];\n                arr[j] = swap;\n            }\n        }\n        int swap = arr[index + 1];\n        arr[index + 1] = arr[end];\n        arr[end] = swap;\n        return index + 1;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "36"
+    },
+    {
+        "original_code": "#include <vector>\nusing namespace std;\n\nclass BinarySearchTree {\nprivate:\n    struct Node {\n        int data;\n        Node* left;\n        Node* right;\n        Node(int val) : data(val), left(nullptr), right(nullptr) {}\n    };\n    Node* root;\n\n    Node* insertNode(Node* node, int value) {\n        if (node == nullptr) return new Node(value);\n        if (value < node->data)\n            node->left = insertNode(node->left, value);\n        else if (value > node->data)\n            node->right = insertNode(node->right, value);\n        return node;\n    }\n\npublic:\n    BinarySearchTree() : root(nullptr) {}\n\n    void insert(int value) {\n        root = insertNode(root, value);\n    }\n}",
+        "comparison_code": "#include <vector>\nusing namespace std;\n\nclass TreeStructure {\nprivate:\n    struct TreeNode {\n        int value;\n        TreeNode* leftChild;\n        TreeNode* rightChild;\n        TreeNode(int val) : value(val), leftChild(nullptr), rightChild(nullptr) {}\n    };\n    TreeNode* rootNode;\n\n    TreeNode* addNode(TreeNode* node, int key) {\n        if (node == nullptr) return new TreeNode(key);\n        if (key < node->value)\n            node->leftChild = addNode(node->leftChild, key);\n        else if (key > node->value)\n            node->rightChild = addNode(node->rightChild, key);\n        return node;\n    }\n\npublic:\n    TreeStructure() : rootNode(nullptr) {}\n\n    void insertNode(int key) {\n        rootNode = addNode(rootNode, key);\n    }\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 22,
+            "comparison_loc": 22,
+            "differences": [
+                "class_names",
+                "struct_names",
+                "method_names",
+                "variable_names"
+            ]
+        },
+        "id": "37"
+    },
+    {
+        "original_code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct ListNode {\n    int data;\n    struct ListNode* next;\n};\n\nstruct ListNode* createNode(int value) {\n    struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));\n    newNode->data = value;\n    newNode->next = NULL;\n    return newNode;\n}\n\nvoid insertAtEnd(struct ListNode** head, int value) {\n    struct ListNode* newNode = createNode(value);\n    if (*head == NULL) {\n        *head = newNode;\n        return;\n    }\n    struct ListNode* current = *head;\n    while (current->next != NULL) {\n        current = current->next;\n    }\n    current->next = newNode;\n}",
+        "comparison_code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int value;\n    struct Node* link;\n};\n\nstruct Node* makeNode(int data) {\n    struct Node* newElement = (struct Node*)malloc(sizeof(struct Node));\n    newElement->value = data;\n    newElement->link = NULL;\n    return newElement;\n}\n\nvoid appendNode(struct Node** head, int data) {\n    struct Node* newElement = makeNode(data);\n    if (*head == NULL) {\n        *head = newElement;\n        return;\n    }\n    struct Node* current = *head;\n    while (current->link != NULL) {\n        current = current->link;\n    }\n    current->link = newElement;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "struct_names",
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "38"
+    },
+    {
+        "original_code": "def find_max_subarray(arr):\n    max_so_far = float('-inf')\n    max_ending_here = 0\n    start, end, s = 0, 0, 0\n\n    for i in range(len(arr)):\n        max_ending_here += arr[i]\n\n        if max_so_far < max_ending_here:\n            max_so_far = max_ending_here\n            start = s\n            end = i\n\n        if max_ending_here < 0:\n            max_ending_here = 0\n            s = i + 1\n\n    return max_so_far, arr[start:end+1]",
+        "comparison_code": "def maximum_subarray(arr):\n    current_max = float('-inf')\n    current_sum = 0\n    start_index, finish_index, temporary_start = 0, 0, 0\n\n    for i in range(len(arr)):\n        current_sum += arr[i]\n\n        if current_max < current_sum:\n            current_max = current_sum\n            start_index = temporary_start\n            finish_index = i\n\n        if current_sum < 0:\n            current_sum = 0\n            temporary_start = i + 1\n\n    return current_max, arr[start_index:finish_index+1]",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 18,
+            "comparison_loc": 18,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "minor_implementation_details"
+            ]
+        },
+        "id": "39"
+    },
+    {
+        "original_code": "import java.util.*;\n\nclass BreadthFirstSearch {\n    private Map<Integer, List<Integer>> graph;\n\n    public BreadthFirstSearch() {\n        graph = new HashMap<>();\n    }\n\n    public void addEdge(int node, int neighbor) {\n        graph.computeIfAbsent(node, k -> new ArrayList<>()).add(neighbor);\n    }\n\n    public List<Integer> bfs(int start) {\n        Set<Integer> visited = new HashSet<>();\n        Queue<Integer> queue = new LinkedList<>();\n        List<Integer> result = new ArrayList<>();\n\n        queue.add(start);\n        visited.add(start);\n\n        while (!queue.isEmpty()) {\n            int current = queue.poll();\n            result.add(current);\n\n            for (int neighbor : graph.getOrDefault(current, Collections.emptyList())) {\n                if (!visited.contains(neighbor)) {\n                    queue.add(neighbor);\n                    visited.add(neighbor);\n                }\n            }\n        }\n\n        return result;\n    }\n}",
+        "comparison_code": "import java.util.*;\n\nclass GraphTraversal {\n    private Map<Integer, List<Integer>> adjacencyList;\n\n    public GraphTraversal() {\n        adjacencyList = new HashMap<>();\n    }\n\n    public void connectNodes(int source, int destination) {\n        adjacencyList.computeIfAbsent(source, k -> new ArrayList<>()).add(destination);\n    }\n\n    public List<Integer> breadthFirstSearch(int startNode) {\n        Set<Integer> exploredNodes = new HashSet<>();\n        Queue<Integer> processingQueue = new LinkedList<>();\n        List<Integer> traversalOrder = new ArrayList<>();\n\n        processingQueue.add(startNode);\n        exploredNodes.add(startNode);\n\n        while (!processingQueue.isEmpty()) {\n            int currentNode = processingQueue.poll();\n            traversalOrder.add(currentNode);\n\n            for (int neighborNode : adjacencyList.getOrDefault(currentNode, Collections.emptyList())) {\n                if (!exploredNodes.contains(neighborNode)) {\n                    processingQueue.add(neighborNode);\n                    exploredNodes.add(neighborNode);\n                }\n            }\n        }\n\n        return traversalOrder;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 24,
+            "comparison_loc": 24,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "40"
+    },
+    {
+        "original_code": "class Graph {\n    private int vertices;\n    private List<List<Integer>> adjacencyList;\n\n    public Graph(int v) {\n        vertices = v;\n        adjacencyList = new ArrayList<>(v);\n        for (int i = 0; i < v; i++) {\n            adjacencyList.add(new ArrayList<>());\n        }\n    }\n\n    public void addEdge(int source, int destination) {\n        adjacencyList.get(source).add(destination);\n        adjacencyList.get(destination).add(source);\n    }\n\n    public boolean hasPath(int start, int end) {\n        boolean[] visited = new boolean[vertices];\n        return dfs(start, end, visited);\n    }\n\n    private boolean dfs(int current, int target, boolean[] visited) {\n        if (current == target) return true;\n        visited[current] = true;\n\n        for (int neighbor : adjacencyList.get(current)) {\n            if (!visited[neighbor]) {\n                if (dfs(neighbor, target, visited)) return true;\n            }\n        }\n\n        return false;\n    }\n}",
+        "comparison_code": "class GraphConnectivity {\n    private int nodeCount;\n    private List<List<Integer>> connections;\n\n    public GraphConnectivity(int totalNodes) {\n        nodeCount = totalNodes;\n        connections = new ArrayList<>(totalNodes);\n        for (int i = 0; i < totalNodes; i++) {\n            connections.add(new ArrayList<>());\n        }\n    }\n\n    public void connectNodes(int from, int to) {\n        connections.get(from).add(to);\n        connections.get(to).add(from);\n    }\n\n    public boolean findPath(int origin, int destination) {\n        boolean[] explored = new boolean[nodeCount];\n        return depthFirstSearch(origin, destination, explored);\n    }\n\n    private boolean depthFirstSearch(int current, int target, boolean[] explored) {\n        if (current == target) return true;\n        explored[current] = true;\n\n        for (int adjacentNode : connections.get(current)) {\n            if (!explored[adjacentNode]) {\n                if (depthFirstSearch(adjacentNode, target, explored)) return true;\n            }\n        }\n\n        return false;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 22,
+            "comparison_loc": 22,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "41"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nclass MatrixMultiplication {\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) {\n        int rowsA = A.size();\n        int colsA = A[0].size();\n        int colsB = B[0].size();\n\n        vector<vector<int>> result(rowsA, vector<int>(colsB, 0));\n\n        for (int i = 0; i < rowsA; i++) {\n            for (int j = 0; j < colsB; j++) {\n                for (int k = 0; k < colsA; k++) {\n                    result[i][j] += A[i][k] * B[k][j];\n                }\n            }\n        }\n\n        return result;\n    }\n};",
+        "comparison_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nclass MatrixComputation {\npublic:\n    vector<vector<int>> multiplyMatrices(vector<vector<int>>& matrix1, vector<vector<int>>& matrix2) {\n        int rowCount = matrix1.size();\n        int colCountA = matrix1[0].size();\n        int colCountB = matrix2[0].size();\n\n        vector<vector<int>> outputMatrix(rowCount, vector<int>(colCountB, 0));\n\n        for (int row = 0; row < rowCount; row++) {\n            for (int col = 0; col < colCountB; col++) {\n                for (int inner = 0; inner < colCountA; inner++) {\n                    outputMatrix[row][col] += matrix1[row][inner] * matrix2[inner][col];\n                }\n            }\n        }\n\n        return outputMatrix;\n    }\n};",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "42"
+    },
+    {
+        "original_code": "def longest_common_subsequence(X, Y):\n    m = len(X)\n    n = len(Y)\n    \n    L = [[0] * (n + 1) for _ in range(m + 1)]\n    \n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if X[i-1] == Y[j-1]:\n                L[i][j] = L[i-1][j-1] + 1\n            else:\n                L[i][j] = max(L[i-1][j], L[i][j-1])\n    \n    return L[m][n]",
+        "comparison_code": "def compute_lcs(sequence1, sequence2):\n    len1 = len(sequence1)\n    len2 = len(sequence2)\n    \n    dp_table = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n    \n    for row in range(1, len1 + 1):\n        for col in range(1, len2 + 1):\n            if sequence1[row-1] == sequence2[col-1]:\n                dp_table[row][col] = dp_table[row-1][col-1] + 1\n            else:\n                dp_table[row][col] = max(dp_table[row-1][col], dp_table[row][col-1])\n    \n    return dp_table[len1][len2]",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 18,
+            "comparison_loc": 18,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "minor_implementation_details"
+            ]
+        },
+        "id": "43"
+    },
+    {
+        "original_code": "public class RadixSort {\n    public static void radixSort(int[] arr) {\n        if (arr == null || arr.length == 0) return;\n        \n        int max = findMaxElement(arr);\n        \n        for (int exp = 1; max / exp > 0; exp *= 10) {\n            countingSort(arr, exp);\n        }\n    }\n    \n    private static void countingSort(int[] arr, int exp) {\n        int n = arr.length;\n        int[] output = new int[n];\n        int[] count = new int[10];\n        \n        for (int i = 0; i < n; i++) {\n            count[(arr[i] / exp) % 10]++;\n        }\n        \n        for (int i = 1; i < 10; i++) {\n            count[i] += count[i - 1];\n        }\n        \n        for (int i = n - 1; i >= 0; i--) {\n            output[count[(arr[i] / exp) % 10] - 1] = arr[i];\n            count[(arr[i] / exp) % 10]--;\n        }\n        \n        for (int i = 0; i < n; i++) {\n            arr[i] = output[i];\n        }\n    }\n    \n    private static int findMaxElement(int[] arr) {\n        int max = arr[0];\n        for (int i = 1; i < arr.length; i++) {\n            if (arr[i] > max) {\n                max = arr[i];\n            }\n        }\n        return max;\n    }\n}",
+        "comparison_code": "public class ArrayRadixSort {\n    public static void performRadixSort(int[] elements) {\n        if (elements == null || elements.length == 0) return;\n        \n        int maxValue = locateMaximum(elements);\n        \n        for (int place = 1; maxValue / place > 0; place *= 10) {\n            stabilizedCountSort(elements, place);\n        }\n    }\n    \n    private static void stabilizedCountSort(int[] elements, int place) {\n        int length = elements.length;\n        int[] sortedArray = new int[length];\n        int[] frequencyCount = new int[10];\n        \n        for (int i = 0; i < length; i++) {\n            frequencyCount[(elements[i] / place) % 10]++;\n        }\n        \n        for (int i = 1; i < 10; i++) {\n            frequencyCount[i] += frequencyCount[i - 1];\n        }\n        \n        for (int i = length - 1; i >= 0; i--) {\n            sortedArray[frequencyCount[(elements[i] / place) % 10] - 1] = elements[i];\n            frequencyCount[(elements[i] / place) % 10]--;\n        }\n        \n        for (int i = 0; i < length; i++) {\n            elements[i] = sortedArray[i];\n        }\n    }\n    \n    private static int locateMaximum(int[] elements) {\n        int maximum = elements[0];\n        for (int i = 1; i < elements.length; i++) {\n            if (elements[i] > maximum) {\n                maximum = elements[i];\n            }\n        }\n        return maximum;\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 24,
+            "comparison_loc": 24,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "44"
+    },
+    {
+        "original_code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct TreeNode {\n    int data;\n    struct TreeNode* left;\n    struct TreeNode* right;\n};\n\nstruct TreeNode* createNode(int value) {\n    struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));\n    newNode->data = value;\n    newNode->left = NULL;\n    newNode->right = NULL;\n    return newNode;\n}\n\nint getHeight(struct TreeNode* node) {\n    if (node == NULL) return 0;\n    \n    int leftHeight = getHeight(node->left);\n    int rightHeight = getHeight(node->right);\n    \n    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;\n}",
+        "comparison_code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int value;\n    struct Node* leftChild;\n    struct Node* rightChild;\n};\n\nstruct Node* makeNode(int data) {\n    struct Node* newElement = (struct Node*)malloc(sizeof(struct Node));\n    newElement->value = data;\n    newElement->leftChild = NULL;\n    newElement->rightChild = NULL;\n    return newElement;\n}\n\nint calculateHeight(struct Node* treeNode) {\n    if (treeNode == NULL) return 0;\n    \n    int leftSubtreeHeight = calculateHeight(treeNode->leftChild);\n    int rightSubtreeHeight = calculateHeight(treeNode->rightChild);\n    \n    return (leftSubtreeHeight > rightSubtreeHeight ? leftSubtreeHeight : rightSubtreeHeight) + 1;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "struct_names",
+                "function_names",
+                "variable_names"
+            ]
+        },
+        "id": "45"
+    },
+    {
+        "original_code": "def quick_select(arr, k):\n    def partition(left, right):\n        pivot = arr[right]\n        store_index = left\n        for i in range(left, right):\n            if arr[i] < pivot:\n                arr[store_index], arr[i] = arr[i], arr[store_index]\n                store_index += 1\n        arr[right], arr[store_index] = arr[store_index], arr[right]\n        return store_index\n    \n    def select(left, right):\n        if left == right:\n            return arr[left]\n        \n        pivotIndex = partition(left, right)\n        \n        if k == pivotIndex:\n            return arr[k]\n        elif k < pivotIndex:\n            return select(left, pivotIndex - 1)\n        else:\n            return select(pivotIndex + 1, right)\n    \n    return select(0, len(arr) - 1)",
+        "comparison_code": "def kth_smallest(arr, k):\n    def array_partition(start, end):\n        pivot = arr[end]\n        insert_pos = start\n        for j in range(start, end):\n            if arr[j] < pivot:\n                arr[insert_pos], arr[j] = arr[j], arr[insert_pos]\n                insert_pos += 1\n        arr[end], arr[insert_pos] = arr[insert_pos], arr[end]\n        return insert_pos\n    \n    def find_kth(left, right):\n        if left == right:\n            return arr[left]\n        \n        pivotIndex = array_partition(left, right)\n        \n        if k == pivotIndex:\n            return arr[k]\n        elif k < pivotIndex:\n            return find_kth(left, pivotIndex - 1)\n        else:\n            return find_kth(pivotIndex + 1, right)\n    \n    return find_kth(0, len(arr) - 1)",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "function_names",
+                "inner_function_names",
+                "variable_names",
+                "minor_implementation_details"
+            ]
+        },
+        "id": "46"
+    },
+    {
+        "original_code": "def binary_search_kth(arr, k):\n    def count_less_equal(mid):\n        return sum(1 for x in arr if x <= mid)\n    \n    left, right = min(arr), max(arr)\n    while left < right:\n        mid = (left + right) // 2\n        if count_less_equal(mid) < k:\n            left = mid + 1\n        else:\n            right = mid\n    return left",
+        "comparison_code": "def selection_by_range(arr, k):\n    def count_smaller(mid):\n        return sum(1 for x in arr if x < mid)\n    \n    start, end = min(arr), max(arr)\n    while start < end:\n        middle = (start + end) // 2\n        if count_smaller(middle) < k - 1:\n            start = middle + 1\n        else:\n            end = middle\n    return start",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 6,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 20,
+            "comparison_loc": 20,
+            "differences": [
+                "function_names",
+                "inner_function_names",
+                "counting_logic"
+            ]
+        },
+        "id": "47"
+    },
+    {
+        "original_code": "#include <vector>\n#include <algorithm>\n\nint mergeBasedKthSelection(std::vector<int>& arr, int k) {\n    std::vector<int> temp = arr;\n    std::sort(temp.begin(), temp.end());\n    return temp[k-1];\n\n    auto merge = [](std::vector<int>& arr, int left, int mid, int right) {\n        std::vector<int> leftArr(arr.begin() + left, arr.begin() + mid + 1);\n        std::vector<int> rightArr(arr.begin() + mid + 1, arr.begin() + right + 1);\n        \n        int i = 0, j = 0, k = left;\n        while (i < leftArr.size() && j < rightArr.size()) {\n            if (leftArr[i] <= rightArr[j]) {\n                arr[k++] = leftArr[i++];\n            } else {\n                arr[k++] = rightArr[j++];\n            }\n        }\n        \n        while (i < leftArr.size()) arr[k++] = leftArr[i++];\n        while (j < rightArr.size()) arr[k++] = rightArr[j++];\n    };\n\n    auto mergeSort = [&](auto&& self, std::vector<int>& arr, int left, int right) -> void {\n        if (left < right) {\n            int mid = left + (right - left) / 2;\n            self(self, arr, left, mid);\n            self(self, arr, mid + 1, right);\n            merge(arr, left, mid, right);\n        }\n    };\n\n    return arr[k-1];\n}",
+        "comparison_code": "#include <vector>\n#include <algorithm>\n\nint sortBasedKthElement(std::vector<int>& arr, int k) {\n    std::vector<int> sorted = arr;\n    std::sort(sorted.begin(), sorted.end());\n    return sorted[k-1];\n\n    auto arrayMerge = [](std::vector<int>& arr, int left, int mid, int right) {\n        std::vector<int> leftSubarray(arr.begin() + left, arr.begin() + mid + 1);\n        std::vector<int> rightSubarray(arr.begin() + mid + 1, arr.begin() + right + 1);\n        \n        int i = 0, j = 0, k = left;\n        while (i < leftSubarray.size() && j < rightSubarray.size()) {\n            if (leftSubarray[i] <= rightSubarray[j]) {\n                arr[k++] = leftSubarray[i++];\n            } else {\n                arr[k++] = rightSubarray[j++];\n            }\n        }\n        \n        while (i < leftSubarray.size()) arr[k++] = leftSubarray[i++];\n        while (j < rightSubarray.size()) arr[k++] = rightSubarray[j++];\n    };\n\n    return arr[k-1];\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 7,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 25,
+            "comparison_loc": 25,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "lambda_function_names"
+            ]
+        },
+        "id": "48"
+    },
+    {
+        "original_code": "import java.util.PriorityQueue;\n\nclass KthSmallestFinder {\n    public static int findKthSmallest(int[] arr, int k) {\n        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);\n        \n        for (int num : arr) {\n            maxHeap.offer(num);\n            if (maxHeap.size() > k) {\n                maxHeap.poll();\n            }\n        }\n        \n        return maxHeap.peek();\n    }\n}",
+        "comparison_code": "import java.util.PriorityQueue;\n\nclass KthElementSelector {\n    public static int selectKthElement(int[] arr, int k) {\n        PriorityQueue<Integer> priorityHeap = new PriorityQueue<>((a, b) -> b - a);\n        \n        for (int element : arr) {\n            priorityHeap.offer(element);\n            if (priorityHeap.size() > k) {\n                priorityHeap.poll();\n            }\n        }\n        \n        return priorityHeap.peek();\n    }\n}",
+        "is_redundant": true,
+        "language": "java",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 15,
+            "comparison_loc": 15,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names"
+            ]
+        },
+        "id": "49"
+    },
+    {
+        "original_code": "int countingSortKthSmallest(int* arr, int n, int k) {\n    int max_val = arr[0];\n    int min_val = arr[0];\n    \n    for (int i = 1; i < n; i++) {\n        if (arr[i] > max_val) max_val = arr[i];\n        if (arr[i] < min_val) min_val = arr[i];\n    }\n    \n    int range = max_val - min_val + 1;\n    int* count = (int*)calloc(range, sizeof(int));\n    \n    for (int i = 0; i < n; i++) {\n        count[arr[i] - min_val]++;\n    }\n    \n    int count_smaller = 0;\n    for (int i = 0; i < range; i++) {\n        int prev_count = count_smaller;\n        count_smaller += count[i];\n        \n        if (count_smaller >= k) {\n            int result = i + min_val;\n            free(count);\n            return result;\n        }\n    }\n    \n    free(count);\n    return -1;\n}",
+        "comparison_code": "int selectKthElement(int* arr, int n, int k) {\n    int maximum = arr[0];\n    int minimum = arr[0];\n    \n    for (int i = 1; i < n; i++) {\n        if (arr[i] > maximum) maximum = arr[i];\n        if (arr[i] < minimum) minimum = arr[i];\n    }\n    \n    int value_range = maximum - minimum + 1;\n    int* frequency = (int*)calloc(value_range, sizeof(int));\n    \n    for (int i = 0; i < n; i++) {\n        frequency[arr[i] - minimum]++;\n    }\n    \n    int cumulative_count = 0;\n    for (int i = 0; i < value_range; i++) {\n        int previous_count = cumulative_count;\n        cumulative_count += frequency[i];\n        \n        if (cumulative_count >= k) {\n            int result = i + minimum;\n            free(frequency);\n            return result;\n        }\n    }\n    \n    free(frequency);\n    return -1;\n}",
+        "is_redundant": true,
+        "language": "c",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 25,
+            "comparison_loc": 25,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "50"
+    },
+    {
+        "original_code": "import random\n\ndef randomized_kth_selection(arr, k):\n    def partition(left, right):\n        pivot_index = random.randint(left, right)\n        arr[pivot_index], arr[right] = arr[right], arr[pivot_index]\n        pivot = arr[right]\n        store_index = left\n        \n        for i in range(left, right):\n            if arr[i] < pivot:\n                arr[store_index], arr[i] = arr[i], arr[store_index]\n                store_index += 1\n        \n        arr[right], arr[store_index] = arr[store_index], arr[right]\n        return store_index\n    \n    def select(left, right):\n        if left == right:\n            return arr[left]\n        \n        pivot_index = partition(left, right)\n        \n        if k == pivot_index:\n            return arr[k]\n        elif k < pivot_index:\n            return select(left, pivot_index - 1)\n        else:\n            return select(pivot_index + 1, right)\n    \n    return select(0, len(arr) - 1)",
+        "comparison_code": "import random\n\ndef select_kth_element(arr, k):\n    def array_partition(start, end):\n        random_pivot = random.randint(start, end)\n        arr[random_pivot], arr[end] = arr[end], arr[random_pivot]\n        pivot = arr[end]\n        insert_pos = start\n        \n        for j in range(start, end):\n            if arr[j] < pivot:\n                arr[insert_pos], arr[j] = arr[j], arr[insert_pos]\n                insert_pos += 1\n        \n        arr[end], arr[insert_pos] = arr[insert_pos], arr[end]\n        return insert_pos\n    \n    def find_kth(left, right):\n        if left == right:\n            return arr[left]\n        \n        pivot_index = array_partition(left, right)\n        \n        if k == pivot_index:\n            return arr[k]\n        elif k < pivot_index:\n            return find_kth(left, pivot_index - 1)\n        else:\n            return find_kth(pivot_index + 1, right)\n    \n    return find_kth(0, len(arr) - 1)",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 25,
+            "comparison_loc": 25,
+            "differences": [
+                "function_names",
+                "inner_function_names",
+                "variable_names"
+            ]
+        },
+        "id": "51"
+    },
+    {
+        "original_code": "def divide_conquer_kth(arr, k):\n    def select_recursive(subarray, k):\n        if len(subarray) <= 5:\n            return sorted(subarray)[k]\n        \n        chunks = [subarray[i:i+5] for i in range(0, len(subarray), 5)]\n        medians = [sorted(chunk)[len(chunk)//2] for chunk in chunks]\n        \n        pivot = select_recursive(medians, len(medians)//2)\n        \n        left = [x for x in subarray if x < pivot]\n        equal = [x for x in subarray if x == pivot]\n        right = [x for x in subarray if x > pivot]\n        \n        if k < len(left):\n            return select_recursive(left, k)\n        elif k < len(left) + len(equal):\n            return pivot\n        else:\n            return select_recursive(right, k - len(left) - len(equal))\n    \n    return select_recursive(arr, k)",
+        "comparison_code": "def kth_element_selector(arr, k):\n    def recursive_selection(subarray, k):\n        if len(subarray) <= 5:\n            return sorted(subarray)[k]\n        \n        divided_chunks = [subarray[i:i+5] for i in range(0, len(subarray), 5)]\n        median_values = [sorted(chunk)[len(chunk)//2] for chunk in divided_chunks]\n        \n        pivot = recursive_selection(median_values, len(median_values)//2)\n        \n        less_than_pivot = [x for x in subarray if x < pivot]\n        equal_to_pivot = [x for x in subarray if x == pivot]\n        greater_than_pivot = [x for x in subarray if x > pivot]\n        \n        if k < len(less_than_pivot):\n            return recursive_selection(less_than_pivot, k)\n        elif k < len(less_than_pivot) + len(equal_to_pivot):\n            return pivot\n        else:\n            return recursive_selection(greater_than_pivot, k - len(less_than_pivot) - len(equal_to_pivot))\n    \n    return recursive_selection(arr, k)",
+        "is_redundant": true,
+        "language": "python",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 9,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 30,
+            "comparison_loc": 30,
+            "differences": [
+                "function_names",
+                "variable_names",
+                "implementation_details"
+            ]
+        },
+        "id": "52"
+    },
+    {
+        "original_code": "#include <vector>\n#include <queue>\n\nclass KthSmallestFinder {\npublic:\n    static int findKthSmallest(std::vector<int>& arr, int k) {\n        std::priority_queue<int> maxHeap;\n        \n        for (int num : arr) {\n            maxHeap.push(num);\n            if (maxHeap.size() > k) {\n                maxHeap.pop();\n            }\n        }\n        \n        return maxHeap.top();\n    }\n\n    static int findKthSmallestOptimized(std::vector<int>& arr, int k) {\n        int n = arr.size();\n        std::vector<int> heap(arr.begin(), arr.begin() + k);\n        \n        std::make_heap(heap.begin(), heap.end());\n        \n        for (int i = k; i < n; ++i) {\n            if (arr[i] < heap.front()) {\n                std::pop_heap(heap.begin(), heap.end());\n                heap.back() = arr[i];\n                std::push_heap(heap.begin(), heap.end());\n            }\n        }\n        \n        return heap.front();\n    }\n}",
+        "comparison_code": "#include <vector>\n#include <queue>\n\nclass KthElementSelector {\npublic:\n    static int selectKthElement(std::vector<int>& arr, int k) {\n        std::priority_queue<int> priorityHeap;\n        \n        for (int element : arr) {\n            priorityHeap.push(element);\n            if (priorityHeap.size() > k) {\n                priorityHeap.pop();\n            }\n        }\n        \n        return priorityHeap.top();\n    }\n\n    static int selectKthElementAlternative(std::vector<int>& arr, int k) {\n        int arraySize = arr.size();\n        std::vector<int> heapContainer(arr.begin(), arr.begin() + k);\n        \n        std::make_heap(heapContainer.begin(), heapContainer.end());\n        \n        for (int i = k; i < arraySize; ++i) {\n            if (arr[i] < heapContainer.front()) {\n                std::pop_heap(heapContainer.begin(), heapContainer.end());\n                heapContainer.back() = arr[i];\n                std::push_heap(heapContainer.begin(), heapContainer.end());\n            }\n        }\n        \n        return heapContainer.front();\n    }\n}",
+        "is_redundant": true,
+        "language": "c++",
+        "redundancy_type": "functional_duplicate_with_modifications",
+        "complexity_score": 8,
+        "metadata": {
+            "source": "custom_generated",
+            "original_loc": 35,
+            "comparison_loc": 35,
+            "differences": [
+                "class_names",
+                "method_names",
+                "variable_names"
+            ]
+        },
+        "id": "53"
+    },
+    {
+        "original_code": "def calculate_area(radius):\n    return 3.14 * radius ** 2",
+        "comparison_code": "def calculate_perimeter(radius):\n    return 2 * 3.14 * radius",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 1,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 1,
+            "comparison_loc": 1
+        },
+        "id": "54"
+    },
+    {
+        "original_code": "def sort_numbers(numbers):\n    return sorted(numbers)",
+        "comparison_code": "def find_maximum(numbers):\n    return max(numbers)",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 1,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 1,
+            "comparison_loc": 1
+        },
+        "id": "55"
+    },
+    {
+        "original_code": "def greet_user(name):\n    print(f'Hello, {name}!')",
+        "comparison_code": "def calculate_sum(a, b):\n    return a + b",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 1,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 1,
+            "comparison_loc": 1
+        },
+        "id": "56"
+    },
+    {
+        "original_code": "def reverse_string(s):\n    return s[::-1]",
+        "comparison_code": "def is_palindrome(s):\n    return s == s[::-1]",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 1,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 1,
+            "comparison_loc": 1
+        },
+        "id": "57"
+    },
+    {
+        "original_code": "def read_file(file_path):\n    with open(file_path, 'r') as file:\n        return file.read()",
+        "comparison_code": "def write_file(file_path, content):\n    with open(file_path, 'w') as file:\n        file.write(content)",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 2,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 3,
+            "comparison_loc": 3
+        },
+        "id": "58"
+    },
+    {
+        "original_code": "def fibonacci_recursive(n):\n    if n <= 1:\n        return n\n    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)",
+        "comparison_code": "def factorial_iterative(n):\n    result = 1\n    for i in range(1, n+1):\n        result *= i\n    return result",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 5,
+            "comparison_loc": 5
+        },
+        "id": "59"
+    },
+    {
+        "original_code": "def merge_sort(arr):\n    if len(arr) > 1:\n        mid = len(arr) // 2\n        left_half = arr[:mid]\n        right_half = arr[mid:]\n\n        merge_sort(left_half)\n        merge_sort(right_half)\n\n        i = j = k = 0\n        while i < len(left_half) and j < len(right_half):\n            if left_half[i] < right_half[j]:\n                arr[k] = left_half[i]\n                i += 1\n            else:\n                arr[k] = right_half[j]\n                j += 1\n            k += 1\n\n        while i < len(left_half):\n            arr[k] = left_half[i]\n            i += 1\n            k += 1\n\n        while j < len(right_half):\n            arr[k] = right_half[j]\n            j += 1\n            k += 1",
+        "comparison_code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 20,
+            "comparison_loc": 7
+        },
+        "id": "60"
+    },
+    {
+        "original_code": "class Graph:\n    def __init__(self, vertices):\n        self.V = vertices\n        self.graph = []\n\n    def add_edge(self, u, v, w):\n        self.graph.append([u, v, w])\n\n    def find(self, parent, i):\n        if parent[i] == i:\n            return i\n        return self.find(parent, parent[i])\n\n    def union(self, parent, rank, x, y):\n        xroot = self.find(parent, x)\n        yroot = self.find(parent, y)\n\n        if rank[xroot] < rank[yroot]:\n            parent[xroot] = yroot\n        elif rank[xroot] > rank[yroot]:\n            parent[yroot] = xroot\n        else:\n            parent[yroot] = xroot\n            rank[xroot] += 1",
+        "comparison_code": "class PriorityQueue:\n    def __init__(self):\n        self.queue = []\n\n    def insert(self, data):\n        self.queue.append(data)\n\n    def delete(self):\n        try:\n            max_index = 0\n            for i in range(len(self.queue)):\n                if self.queue[i] > self.queue[max_index]:\n                    max_index = i\n            item = self.queue[max_index]\n            del self.queue[max_index]\n            return item\n        except IndexError:\n            print('Queue is empty')\n            return None",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 16,
+            "comparison_loc": 13
+        },
+        "id": "61"
+    },
+    {
+        "original_code": "def knapsack(values, weights, capacity):\n    n = len(values)\n    dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            if weights[i-1] <= w:\n                dp[i][w] = max(values[i-1] + dp[i-1][w-weights[i-1]], dp[i-1][w])\n            else:\n                dp[i][w] = dp[i-1][w]\n\n    return dp[n][capacity]",
+        "comparison_code": "def dijkstra(graph, start):\n    import heapq\n    distances = {node: float('infinity') for node in graph}\n    distances[start] = 0\n    priority_queue = [(0, start)]\n\n    while priority_queue:\n        current_distance, current_node = heapq.heappop(priority_queue)\n        if current_distance > distances[current_node]:\n            continue\n        for neighbor, weight in graph[current_node].items():\n            distance = current_distance + weight\n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(priority_queue, (distance, neighbor))\n\n    return distances",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 12,
+            "comparison_loc": 13
+        },
+        "id": "62"
+    },
+    {
+        "original_code": "def parse_json(json_string):\n    import json\n    try:\n        return json.loads(json_string)\n    except json.JSONDecodeError as e:\n        print(f'Error parsing JSON: {e}')\n        return None",
+        "comparison_code": "def connect_to_database(host, user, password, db_name):\n    import pymysql\n    try:\n        connection = pymysql.connect(\n            host=host,\n            user=user,\n            password=password,\n            database=db_name\n        )\n        return connection\n    except pymysql.MySQLError as e:\n        print(f'Error connecting to database: {e}')\n        return None",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 7,
+            "comparison_loc": 9
+        },
+        "id": "63"
+    },
+    {
+        "original_code": "def detect_cycle(graph):\n    def dfs(node, visited, rec_stack):\n        visited[node] = True\n        rec_stack[node] = True\n        for neighbor in graph[node]:\n            if not visited[neighbor]:\n                if dfs(neighbor, visited, rec_stack):\n                    return True\n            elif rec_stack[neighbor]:\n                return True\n        rec_stack[node] = False\n        return False\n\n    visited = {node: False for node in graph}\n    rec_stack = {node: False for node in graph}\n\n    for node in graph:\n        if not visited[node]:\n            if dfs(node, visited, rec_stack):\n                return True\n    return False",
+        "comparison_code": "def topological_sort(graph):\n    def dfs(node, visited, stack):\n        visited[node] = True\n        for neighbor in graph[node]:\n            if not visited[neighbor]:\n                dfs(neighbor, visited, stack)\n        stack.append(node)\n\n    visited = {node: False for node in graph}\n    stack = []\n\n    for node in graph:\n        if not visited[node]:\n            dfs(node, visited, stack)\n\n    return stack[::-1]",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 19,
+            "comparison_loc": 15
+        },
+        "id": "64"
+    },
+    {
+        "original_code": "def generate_primes(n):\n    primes = []\n    sieve = [True] * (n + 1)\n    for p in range(2, n + 1):\n        if sieve[p]:\n            primes.append(p)\n            for i in range(p * p, n + 1, p):\n                sieve[i] = False\n    return primes",
+        "comparison_code": "def generate_fibonacci(n):\n    fib_sequence = [0, 1]\n    for _ in range(2, n):\n        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])\n    return fib_sequence[:n]",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 7,
+            "comparison_loc": 5
+        },
+        "id": "65"
+    },
+    {
+        "original_code": "def parse_xml(file_path):\n    import xml.etree.ElementTree as ET\n    try:\n        tree = ET.parse(file_path)\n        root = tree.getroot()\n        return root\n    except ET.ParseError as e:\n        print(f'Error parsing XML: {e}')\n        return None",
+        "comparison_code": "def parse_csv(file_path):\n    import csv\n    try:\n        with open(file_path, 'r') as csvfile:\n            reader = csv.DictReader(csvfile)\n            return [row for row in reader]\n    except FileNotFoundError as e:\n        print(f'Error reading CSV file: {e}')\n        return []",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 8,
+            "comparison_loc": 7
+        },
+        "id": "66"
+    },
+    {
+        "original_code": "def train_linear_model(X, y):\n    from sklearn.linear_model import LinearRegression\n    model = LinearRegression()\n    model.fit(X, y)\n    return model",
+        "comparison_code": "def train_decision_tree(X, y):\n    from sklearn.tree import DecisionTreeClassifier\n    model = DecisionTreeClassifier()\n    model.fit(X, y)\n    return model",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 5,
+            "comparison_loc": 5
+        },
+        "id": "67"
+    },
+    {
+        "original_code": "def get_weather_data(city):\n    import requests\n    api_url = f'http://api.weather.com/v3/weather/{city}'\n    response = requests.get(api_url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print('Failed to retrieve data')\n        return None",
+        "comparison_code": "def get_stock_prices(stock_symbol):\n    import requests\n    api_url = f'http://api.stocks.com/v2/prices/{stock_symbol}'\n    response = requests.get(api_url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print('Failed to retrieve data')\n        return None",
+        "is_redundant": false,
+        "language": "python",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 4,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 8,
+            "comparison_loc": 8
+        },
+        "id": "68"
+    },
+    {
+        "original_code": "int findGCD(int a, int b) {\n    while (b != 0) {\n        int temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}",
+        "comparison_code": "int lcm(int a, int b) {\n    return (a * b) / findGCD(a, b);\n}",
+        "is_redundant": false,
+        "language": "c++",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 3,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 7,
+            "comparison_loc": 3
+        },
+        "id": "69"
+    },
+    {
+        "original_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nvoid quickSort(vector<int>& arr, int low, int high) {\n    if (low < high) {\n        int pivot = partition(arr, low, high);\n        quickSort(arr, low, pivot - 1);\n        quickSort(arr, pivot + 1, high);\n    }\n}\n\nint partition(vector<int>& arr, int low, int high) {\n    int pivot = arr[high];\n    int i = (low - 1);\n\n    for (int j = low; j <= high - 1; j++) {\n        if (arr[j] < pivot) {\n            i++;\n            swap(arr[i], arr[j]);\n        }\n    }\n    swap(arr[i + 1], arr[high]);\n    return (i + 1);\n}",
+        "comparison_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint binarySearch(vector<int>& arr, int low, int high, int key) {\n    while (low <= high) {\n        int mid = low + (high - low) / 2;\n        if (arr[mid] == key) {\n            return mid;\n        } else if (arr[mid] < key) {\n            low = mid + 1;\n        } else {\n            high = mid - 1;\n        }\n    }\n    return -1;\n}",
+        "is_redundant": false,
+        "language": "c++",
+        "redundancy_type": "distinct_functionality",
+        "complexity_score": 5,
+        "metadata": {
+            "source": "manual_entry",
+            "original_loc": 19,
+            "comparison_loc": 15
+        },
+        "id": "70"
+    }
+]
