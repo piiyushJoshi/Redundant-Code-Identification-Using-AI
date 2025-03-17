@@ -4,7 +4,7 @@ import random
 import itertools
 
 # Define dataset path and output JSON file
-DATASET_PATH = "C:/Users/piyus/Desktop/Major Project/ProgramData"  # Change this to your actual dataset path
+DATASET_PATH = "path_to_dataset"  # Change this to your actual dataset path
 OUTPUT_JSON = "Code_Similarity_Dataset.json"
 PAIRS_PER_FOLDER = 500  # Limit to 500 positive and 500 negative pairs per folder
 
